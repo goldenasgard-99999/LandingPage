@@ -1,0 +1,8 @@
+{
+  "name": "Golden Asgard",
+  "description": "Premium real estate landing page for Golden Asgard, official partner of Golden Topper in Cebu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

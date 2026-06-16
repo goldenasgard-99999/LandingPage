@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+@import "tailwindcss";
+
+@variant dark (.dark &);
+
+
+:root {
+  --app-slate-50: #FAF7F2;
+  --app-slate-100: #F3ECE0;
+  --app-slate-200: #E3D4BC;
+  --app-slate-300: #D0BE9C;
+  --app-slate-400: #B7A17B;
+  --app-slate-500: #9C8661;
+  --app-slate-600: #7F6A47;
+  --app-slate-700: #5E4E32;
+  --app-slate-800: #3F331F;
+  --app-slate-900: #1E170C;
+  --app-slate-950: #0F0B06;
+  --app-white: #FCFAF6;
+  --app-black: #050403;
+  --app-bg: #FAF7F2;
+  --app-text: #1E170C;
+}
+
+.dark {
+  --app-slate-50: #12100C;
+  --app-slate-100: #1C1812;
+  --app-slate-200: #2F291E;
+  --app-slate-300: #473E2E;
+  --app-slate-400: #6B5D45;
+  --app-slate-500: #8F7D5D;
+  --app-slate-600: #B4A485;
+  --app-slate-700: #CEBF9F;
+  --app-slate-800: #E6E0D2;
+  --app-slate-900: #F5F1E9;
+  --app-slate-950: #FAF9F6;
+  --app-white: #12100C;
+  --app-black: #000000;
+  --app-bg: #0C0A07;
+  --app-text: #F5F1E9;
+}
+
+@theme {
+  --color-amber-400: #E5BE6B;
+  --color-amber-500: #D4AF37;
+  --color-amber-600: #BA9425;
+  --color-amber-700: #9A7714;
+
+  --color-slate-900: var(--app-slate-900);
+  --color-slate-950: var(--app-slate-950);
+  --color-slate-800: var(--app-slate-800);
+  --color-slate-700: var(--app-slate-700);
+  --color-slate-600: var(--app-slate-600);
+  --color-slate-500: var(--app-slate-500);
+  --color-slate-400: var(--app-slate-400);
+  --color-slate-300: var(--app-slate-300);
+  --color-slate-200: var(--app-slate-200);
+  --color-slate-100: var(--app-slate-100);
+  --color-slate-50: var(--app-slate-50);
+  --color-white: var(--app-white);
+  --color-black: var(--app-black);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+}
+
+body {
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Force geometric aesthetic by removing border radii and dropshadows on containers if needed, but tailwind classes will be updated manually where possible to match geometric layout */
