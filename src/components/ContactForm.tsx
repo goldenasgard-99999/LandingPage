@@ -34,7 +34,6 @@ useEffect(() => {
     const turnstile = (window as any).turnstile;
     if (!turnstile || !turnstileRef.current) return false;
 
-    // prevent double render
     if (turnstileRef.current.childNodes.length > 0) return true;
 
     turnstile.render(turnstileRef.current, {
@@ -48,14 +47,10 @@ useEffect(() => {
     return true;
   };
 
-  // try immediately
   if (initTurnstile()) return;
 
-  // retry until script loads
   const interval = setInterval(() => {
-    if (initTurnstile()) {
-      clearInterval(interval);
-    }
+    if (initTurnstile()) clearInterval(interval);
   }, 300);
 
   return () => clearInterval(interval);
