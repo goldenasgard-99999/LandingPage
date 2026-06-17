@@ -26,25 +26,32 @@ export default function ContactForm({ projectName = '' }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    
-    const formUrl = "https://script.google.com/macros/s/AKfycbwcHT9PaH0l_PUFib7y3K6_OLFoH8skVX_9MYPr8Hr_cBSo4Z-Zoqpsa5X9Co1GAZ-M/exec";
-    const data = new FormData(e.currentTarget);
-    
-    try {
-      await fetch(formUrl, {
-        method: 'POST',
-        body: data,
-        mode: 'no-cors',
-      });
-      setSubmitted(true);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    } finally {
-      setLoading(false);
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    const response = await fetch(
+      "https://api.goldenasgard.workers.dev",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Request failed");
     }
-  };
+
+    setSubmitted(true);
+  } catch (error) {
+    console.error("Submission error:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
