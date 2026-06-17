@@ -638,20 +638,8 @@ export default function CityClou() {
                       className="absolute inset-0 w-full h-full object-cover transition-all duration-700 hover:scale-[1.02]"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
-                    
-                    {/* Information panel */}
-                    <div className="absolute bottom-6 left-6 right-6 z-10 text-[#FCFAF6]">
-                      <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-amber-400 bg-black/45 px-2 py-0.5 rounded border border-amber-500/20 backdrop-blur-xs inline-block mb-1.5">
-                        Overview Experience
-                      </span>
-                      <h4 className="text-lg md:text-xl font-serif text-[#FCFAF6] font-medium drop-shadow-md mb-1">
-                        {overviewTowersSlides[overviewIdx].title}
-                      </h4>
-                      <p className="text-[10px] md:text-[11px] text-[#E3D4BC] font-light max-w-xl leading-relaxed drop-shadow-sm/90">
-                        {overviewTowersSlides[overviewIdx].desc}
-                      </p>
-                    </div>
+                    {/* Clean overlay to maintain image depth hover */}
+                    <div className="absolute inset-0 bg-black/5 hover:bg-transparent pointer-events-none transition-colors duration-300" />
                   </div>
 
                   {/* Left / Right Navigators */}
@@ -672,14 +660,11 @@ export default function CityClou() {
                     <ChevronRight className="w-5 h-5 pointer-events-none" />
                   </button>
 
-                  {/* Indicator count */}
-                  <div className="absolute bottom-6 right-6 bg-[#0B0F19]/90 backdrop-blur-xs text-[10px] text-amber-400 font-mono tracking-widest px-3 py-1 font-bold rounded z-20 border border-amber-500/20">
-                    {overviewIdx + 1} / {overviewTowersSlides.length}
-                  </div>
+
                 </div>
 
                 {/* Symmetric Dots */}
-                <div className="flex justify-center gap-2 pt-1">
+                <div className="flex justify-center gap-2 pt-1 mb-4">
                   {overviewTowersSlides.map((_, dotIdx) => (
                     <button 
                       key={dotIdx}
@@ -690,6 +675,16 @@ export default function CityClou() {
                       aria-label={`Go to overview slide ${dotIdx + 1}`}
                     />
                   ))}
+                </div>
+
+                {/* Left Border Callout */}
+                <div className="mt-4 border-l-2 border-amber-500 pl-4 py-1 animate-fade-in">
+                  <h4 className="text-xs uppercase tracking-widest font-bold text-amber-600 dark:text-amber-400 mb-1">
+                    {overviewTowersSlides[overviewIdx].title}
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-neutral-300 italic leading-relaxed">
+                    {overviewTowersSlides[overviewIdx].desc}
+                  </p>
                 </div>
               </div>
 
