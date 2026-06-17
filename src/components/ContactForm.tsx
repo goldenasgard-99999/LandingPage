@@ -21,15 +21,26 @@ export default function ContactForm({ projectName = '' }: ContactFormProps) {
     project: getInitialProject(),
     message: projectName ? `I am interested in learning more about ${projectName}. Please contact me.` : '',
   });
-
+  
+  const [turnstileToken, setTurnstileToken] = useState<string>('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  
+useEffect(() => {
+    window.onTurnstileSuccess = (token: string) => {
+      setTurnstileToken(token);
+    };
+  }, []);
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   setLoading(true);
 
   try {
+    if (!turnstileToken) {
+        throw new Error('Not verified');
+      }
+    
     const response = await fetch(
       "https://api.goldenasgard.workers.dev",
       {
@@ -37,7 +48,7 @@ export default function ContactForm({ projectName = '' }: ContactFormProps) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({formData,turnstileToken}),
       }
     );
 
