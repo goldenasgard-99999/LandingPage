@@ -65,10 +65,9 @@ useEffect(() => {
   e.preventDefault();
   setLoading(true);
 
-  try {
-    if (!turnstileToken) {
-  console.warn("Turnstile not ready yet");
-  return;
+   
+  if (!turnstileToken) {
+  throw new Error("Turnstile not verified");
 }
     
     const response = await fetch(
