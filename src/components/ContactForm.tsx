@@ -164,7 +164,11 @@ export default function ContactForm({ projectName = '' }: ContactFormProps) {
           placeholder="Please specify if you desire specific features (e.g., high floors, seaward balconies, specific slot requests, or investment target goals)."
         ></textarea>
       </div>
-
+ <div
+    className="cf-turnstile"
+    data-sitekey="0x4AAAAAADmfOqZ57GZ93dde"
+    data-theme="dark"
+  />
       <button
         type="submit"
         disabled={loading}
@@ -173,11 +177,7 @@ export default function ContactForm({ projectName = '' }: ContactFormProps) {
         <span className="font-mono tracking-[0.25em]">{loading ? 'TRANSMITTING REQUEST...' : 'REQUEST PORTFOLIO DISCLOSURE'}</span>
         {!loading && <Send size={12} className="text-neutral-950" />}
       </button>
-  <div
-    className="cf-turnstile"
-    data-sitekey="0x4AAAAAADmfOqZ57GZ93dde"
-    data-theme="dark"
-  />
+ 
       
     </form>
   );
