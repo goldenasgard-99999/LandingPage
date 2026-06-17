@@ -78,7 +78,10 @@ useEffect(() => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({formData,turnstileToken}),
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken,
+        }),
       }
     );
 
