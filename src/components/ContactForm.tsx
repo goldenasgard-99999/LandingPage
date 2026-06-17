@@ -30,15 +30,35 @@ export default function ContactForm({ projectName = '' }: ContactFormProps) {
 const turnstileRef = useRef<HTMLDivElement>(null);
 
 useEffect(() => {
-  if (!(window as any).turnstile) return;
+  const initTurnstile = () => {
+    const turnstile = (window as any).turnstile;
+    if (!turnstile || !turnstileRef.current) return false;
 
-  (window as any).turnstile.render(turnstileRef.current, {
-    sitekey: "0x4AAAAAADmfOqZ57GZ93dde",
-    theme: "dark",
-    callback: (token: string) => {
-      setTurnstileToken(token);
-    },
-  });
+    // prevent double render
+    if (turnstileRef.current.childNodes.length > 0) return true;
+
+    turnstile.render(turnstileRef.current, {
+      sitekey: "0x4AAAAAADmfOqZ57GZ93dde",
+      theme: "dark",
+      callback: (token: string) => {
+        setTurnstileToken(token);
+      },
+    });
+
+    return true;
+  };
+
+  // try immediately
+  if (initTurnstile()) return;
+
+  // retry until script loads
+  const interval = setInterval(() => {
+    if (initTurnstile()) {
+      clearInterval(interval);
+    }
+  }, 300);
+
+  return () => clearInterval(interval);
 }, []);
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
