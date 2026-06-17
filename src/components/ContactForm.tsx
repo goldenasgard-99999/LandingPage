@@ -65,24 +65,21 @@ useEffect(() => {
   e.preventDefault();
   setLoading(true);
 
-   
-  if (!turnstileToken) {
-  throw new Error("Turnstile not verified");
-}
-    
-    const response = await fetch(
-      "https://api.goldenasgard.workers.dev",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          turnstileToken,
-        }),
-      }
-    );
+  try {
+    if (!turnstileToken) {
+      throw new Error("Turnstile not verified");
+    }
+
+    const response = await fetch("https://api.goldenasgard.workers.dev", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...formData,
+        turnstileToken,
+      }),
+    });
 
     if (!response.ok) {
       throw new Error("Request failed");
