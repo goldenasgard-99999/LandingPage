@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+//import React, { useState, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Send } from 'lucide-react';
 
 interface ContactFormProps {
@@ -26,11 +27,19 @@ export default function ContactForm({ projectName = '' }: ContactFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   
+const turnstileRef = useRef<HTMLDivElement>(null);
+
 useEffect(() => {
-    window.onTurnstileSuccess = (token: string) => {
+  if (!(window as any).turnstile) return;
+
+  (window as any).turnstile.render(turnstileRef.current, {
+    sitekey: "0x4AAAAAADmfOqZ57GZ93dde",
+    theme: "dark",
+    callback: (token: string) => {
       setTurnstileToken(token);
-    };
-  }, []);
+    },
+  });
+}, []);
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
@@ -38,8 +47,9 @@ useEffect(() => {
 
   try {
     if (!turnstileToken) {
-        throw new Error('Not verified');
-      }
+  console.warn("Turnstile not ready yet");
+  return;
+}
     
     const response = await fetch(
       "https://api.goldenasgard.workers.dev",
@@ -175,11 +185,7 @@ useEffect(() => {
           placeholder="Please specify if you desire specific features (e.g., high floors, seaward balconies, specific slot requests, or investment target goals)."
         ></textarea>
       </div>
- <div
-    className="cf-turnstile"
-    data-sitekey="0x4AAAAAADmfOqZ57GZ93dde"
-    data-theme="dark"
-  />
+ <div ref={turnstileRef}></div>
       <button
         type="submit"
         disabled={loading}
