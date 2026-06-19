@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Calendar, PhilippinePeso, ShieldCheck, Award, Star } from 'lucide-react';
 import { projects } from '../data';
 import { motion } from 'motion/react';
+import { useEffect } from 'react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -19,6 +20,10 @@ const staggerContainer = {
 };
 
 export default function Home() {
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-neutral-950 text-slate-900 dark:text-neutral-50 transition-colors duration-300">
       {/* Hero Section - Elevated Seamless Theme-Adaptive Design */}
