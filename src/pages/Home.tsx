@@ -116,7 +116,7 @@ export default function Home() {
                   <ShieldCheck className="text-white dark:text-amber-500 h-5 w-5" />
                 </div>
                 <div>
-                  <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 mb-1">Golden Topper</h2>
+                  <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-[#FCFAF6] mb-1">Golden Topper</h2>
                   <p className="text-[10px] text-slate-500 dark:text-neutral-400 uppercase tracking-widest italic animate-pulse">Accredited Sales Agent</p>
                 </div>
               </div>
