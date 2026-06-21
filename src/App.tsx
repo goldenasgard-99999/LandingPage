@@ -13,7 +13,7 @@ export default function App() {
     <ThemeProvider>
       <Router>
         <ScrollToTop />
-        <div className="flex flex-col min-h-screen overflow-x-hidden">
+        <div className="flex flex-col min-h-screen overflow-x-clip">
           <Navbar />
           <main className="flex-grow">
             <Routes>
