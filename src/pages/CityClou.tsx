@@ -879,13 +879,11 @@ export default function CityClou() {
 
           {/* Sidebar / Contact */}
           <div className="lg:col-span-1">
-            <div className="sticky top-28 bg-white border-t-8 border-amber-500 border-l border-r border-b border-slate-200 shadow-sm flex flex-col">
-              <div className="p-8 border-b border-slate-200 bg-slate-50">
-                <h3 className="text-2xl font-serif text-slate-900 mb-2">Request a Quote</h3>
-                <p className="text-slate-500 text-[10px] uppercase tracking-widest leading-relaxed">Our property experts are ready to provide details on available units and pricing.</p>
-              </div>
+            <div className="sticky top-28 bg-white dark:bg-[#0c0a09] border-t-8 border-slate-900 dark:border-amber-500 border-l border-r border-b border-slate-200 dark:border-neutral-900 p-8 shadow-sm transition-all duration-300">
+              <h3 className="text-2xl font-serif text-slate-900 dark:text-[#FCFAF6] mb-2">Interested?</h3>
+              <p className="text-slate-500 dark:text-neutral-400 mb-8 text-[10px] uppercase tracking-widest leading-relaxed">Send us a message and our property specialist will assist you with pricing and availability.</p>
               
-              <div className="px-8 py-6 space-y-4 border-b border-slate-200 bg-white">
+              <div className="grid grid-cols-1 gap-3 mb-6 pb-6 border-b border-slate-150 dark:border-neutral-900">
                 <div className="flex justify-between items-center bg-slate-50 p-4 border border-slate-100">
                   <p className="text-[9px] text-slate-500 uppercase tracking-widest font-bold">Price Range</p>
                   <p className="text-sm font-semibold text-slate-900">{project.priceRange}</p>
@@ -896,9 +894,7 @@ export default function CityClou() {
                 </div>
               </div>
 
-              <div className="p-8 bg-white flex-1">
-                <ContactForm projectName={project.name} />
-              </div>
+              <ContactForm projectName={project.name} />
             </div>
           </div>
           
