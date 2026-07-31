@@ -57,7 +57,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-[11px] uppercase tracking-wider text-[#FCFAF6] mb-2">Messenger</h3>
-                    <p className="text-stone-400 leading-relaxed text-[10px] uppercase tracking-widest">Golden Asgard Real Estates</p>
+                    <p className="text-stone-400 leading-relaxed text-[10px] uppercase tracking-widest">Golden Asgard</p>
                   </div>
                 </div>
               </div>
